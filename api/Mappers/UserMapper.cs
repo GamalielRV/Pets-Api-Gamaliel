@@ -28,5 +28,21 @@ namespace api.Mappers
                 age = createUserRequest.Age
             };
         }
+
+
+          public static User ToUserWithPetsFromCreateDto(this CreateUserWithPetsDto createUserWithPetsDto)
+        {
+            return new User
+            {
+                firstName = createUserWithPetsDto.FirstName,
+                lastName = createUserWithPetsDto.LastName,
+                age = createUserWithPetsDto.Age,
+                pets = createUserWithPetsDto.Pets.Select(petDto => new Pet
+                {
+                    name = petDto.Name,
+                    animal = petDto.Animal
+                }).ToList()
+            };
+        }
     }
 }

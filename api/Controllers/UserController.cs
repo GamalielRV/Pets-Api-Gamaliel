@@ -102,7 +102,24 @@ namespace api.Controllers
             await _context.SaveChangesAsync();
 
             return Ok($"Pet {pet.name} has been assigned to user {user.firstName} {user.lastName}.");
-        }    
+        }   
+
+
+        [HttpPost("create-with-pets")]
+        public async Task<IActionResult> CreateUserWithPets([FromBody] CreateUserWithPetsDto userDto)
+        {
+            // Mapeo del DTO a la entidad User usando el mapper
+            var userModel = userDto.ToUserWithPetsFromCreateDto();
+
+            // Agrega el nuevo usuario con sus mascotas al contexto
+            await _context.Users.AddAsync(userModel);
+            await _context.SaveChangesAsync();
+
+            // Retorna el usuario creado con sus mascotas
+            return CreatedAtAction(nameof(getById), new { id = userModel.id }, userModel.ToDto());
+        }
+
+ 
 
        
     }
