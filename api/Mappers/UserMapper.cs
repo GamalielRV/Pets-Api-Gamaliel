@@ -9,6 +9,7 @@ namespace api.Mappers
 {
   public static class UserMapper
     {
+        // de user a User.Dto
         public static UserDto ToDto(this User user){
             return new UserDto {
                 Id = user.id,
@@ -19,7 +20,7 @@ namespace api.Mappers
             };
         }
 
-
+        // de createUser a User model
         public static User ToUserFromCreateDto(this CreateUserRequestDto createUserRequest){
             return new User{
                 firstName = createUserRequest.FirstName,

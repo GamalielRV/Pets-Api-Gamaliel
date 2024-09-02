@@ -136,3 +136,4 @@ D:\Gama\Curso Web\PETS-API\api\obj\Debug\net8.0\refint\api.dll
 D:\Gama\Curso Web\PETS-API\api\obj\Debug\net8.0\api.pdb
 D:\Gama\Curso Web\PETS-API\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 D:\Gama\Curso Web\PETS-API\api\obj\Debug\net8.0\ref\api.dll
+D:\Gama\Curso Web\PETS-API\api\obj\Debug\net8.0\api.sourcelink.json
