@@ -77,6 +77,33 @@ namespace api.Controllers
             return NoContent();
         }
 
+        [HttpPost("{userId}/assign-pet/{petId}")]
+        public async Task<IActionResult> AssignPetToUser([FromBody] AssingPetRequestDto assingPet)
+        {
+            // Buscar el usuario por ID
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.id == assingPet.IdUser);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            // Buscar la mascota por ID
+            var pet = await _context.Pets.FirstOrDefaultAsync(p => p.id == assingPet.IdPet);
+            if (pet == null)
+            {
+                return NotFound("Pet not found.");
+            }
+
+            // Asigna el usuario a la mascota
+            pet.userId = user.id;
+
+            // Guarda los cambios en la base de datos
+            _context.Pets.Update(pet);
+            await _context.SaveChangesAsync();
+
+            return Ok($"Pet {pet.name} has been assigned to user {user.firstName} {user.lastName}.");
+        }    
+
        
     }
  }
